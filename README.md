@@ -1,4 +1,4 @@
-# chatgpt-clone
+# ChatGPT-clone
 Build Your own ChatGPT with OpenAI API and Streamlit
 
 - Get your OpenAI API key here - https://beta.openai.com/account/api-keys

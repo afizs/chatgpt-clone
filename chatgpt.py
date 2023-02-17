@@ -6,17 +6,19 @@ from config import open_api_key
 openai.api_key = open_api_key
 
 # openAI code
+
+
 def openai_create(prompt):
 
     response = openai.Completion.create(
-    model="text-davinci-003",
-    prompt=prompt,
-    temperature=0.9,
-    max_tokens=150,
-    top_p=1,
-    frequency_penalty=0,
-    presence_penalty=0.6,
-    stop=[" Human:", " AI:"]
+        model="text-davinci-003",
+        prompt=prompt,
+        temperature=0.9,
+        max_tokens=150,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0.6,
+        stop=[" Human:", " AI:"]
     )
 
     return response.choices[0].text
@@ -31,6 +33,7 @@ def chatgpt_clone(input, history):
     output = openai_create(inp)
     history.append((input, output))
     return history, history
+
 
 # Streamlit App
 st.set_page_config(
@@ -51,7 +54,7 @@ if 'past' not in st.session_state:
 
 def get_text():
     input_text = st.text_input("You: ", key="input")
-    return input_text 
+    return input_text
 
 
 user_input = get_text()
@@ -67,4 +70,5 @@ if st.session_state['generated']:
 
     for i in range(len(st.session_state['generated'])-1, -1, -1):
         message(st.session_state["generated"][i], key=str(i))
-        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+        message(st.session_state['past'][i],
+                is_user=True, key=str(i) + '_user')
